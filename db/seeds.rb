@@ -30,7 +30,7 @@ end
   distance = (100..5000).to_a.sample 
   time = (1..120).to_a.sample
   client_id = (1..12).to_a.sample
-  vehicle_id = (2..9).to_a.sample
+  vehicle_id = (1..8).to_a.sample
   
   Track.create!(name: name, distance: distance, time: time, client_id: client_id, vehicle_id: vehicle_id)
 end
