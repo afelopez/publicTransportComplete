@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <% if @tracks.any? %>
+      <h1>Listing Tracks</h1> 
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Vehicle</th>
+            <th>Client</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tracks.each do |track| %>
+            <tr>
+              <td><a href="#" data-toggle="modal" data-target="#track-<%= track.id %>"><%= track.name %></a> </td>
+              <div class="modal fade" id="track-<%= track.id %>" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title"><%= track.name %></h4>
+                    </div>
+                    <div class="modal-body">
+                      <p><strong>Distance: </strong> <%= track.distance %> Km</p>
+                      <p><strong>Time: </strong> <%= track.time %> h</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <td><a href="#" data-toggle="modal" data-target="#track-<%= track.vehicle.plate %>"><%= track.vehicle.plate %></a></td>
+              <div class="modal fade" id="track-<%= track.vehicle.plate %>" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title"><%= track.vehicle.plate %></h4>
+                    </div>
+                    <div class="modal-body">
+                      <p><strong>Category: </strong> <%= track.vehicle.category %></p>
+                      <p><strong>Plate: </strong> <%= track.vehicle.plate %></p>
+                      <p><strong>Year: </strong> <%= track.vehicle.year %></p>
+                      <p><strong>Color: </strong> <%= track.vehicle.color %></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <td><a href="#" data-toggle="modal" data-target="#track-<%= track.client.name.parameterize %>"><%= track.client.name %></a></td>
+              <div class="modal fade" id="track-<%= track.client.name.parameterize %>" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title"><%= track.client.name %></h4>
+                    </div>
+                    <div class="modal-body">
+                      <p><strong>Email: </strong> <%= track.client.email %></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </tr>
+          <% end %>
+        </tbody>      
+      </table>
+    <% else %>
+      <h1>No Found Tracks!</h1>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PublicTransportComplete</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "Public Transport", root_path, id: "logo" %>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Settings", edit_user_registration_path %></li>
+                  <li class="divider"></li>
+                  <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to "Sign up", new_user_registration_path %></li>
+              <li><%= link_to "Login", new_user_session_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <div class="container">
+      <%= yield %>  
+    </div>
+  </body>
+</html>
